@@ -10,7 +10,7 @@ variables:
   projectDir: packages/nuget/src/Nforza.Demo.Utilities
   feedName: oslo              # replace with your Azure Artifacts feed name
 
-steps:
+steps:main
   - task: UseDotNet@2
     displayName: Install .NET 8 SDK
     inputs:
