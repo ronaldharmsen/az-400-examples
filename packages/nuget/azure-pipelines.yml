@@ -27,5 +27,5 @@ steps:
   - task: NuGetAuthenticate@1
     displayName: Authenticate to Azure Artifacts
 
-  - script: dotnet nuget push "$(Build.ArtifactStagingDirectory)/*.nupkg" --source "https://pkgs.dev.azure.com/$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_packaging/$(feedName)/nuget/v3/index.json" --api-key az
+  - script: dotnet nuget push "$(Build.ArtifactStagingDirectory)/*.nupkg" --source "https://pkgs.dev.azure.com/ronaldharmsen/oslo/_packaging/$(feedName)/nuget/v3/index.json" --api-key az
     displayName: Push to Azure Artifacts
