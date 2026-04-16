@@ -1,0 +1,31 @@
+trigger:
+  paths:
+    include:
+      - packages/nuget/**
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  projectDir: packages/nuget/src/Nforza.Demo.Utilities
+  feedName: oslo              # replace with your Azure Artifacts feed name
+
+steps:
+  - task: UseDotNet@2
+    displayName: Install .NET 8 SDK
+    inputs:
+      packageType: sdk
+      version: 8.x
+
+  - script: dotnet build $(projectDir) --configuration Release
+    displayName: Build
+
+  - script: dotnet pack $(projectDir) --configuration Release --output $(Build.ArtifactStagingDirectory) -p:PackageVersion=1.0.$(Build.BuildId)
+    displayName: Pack
+
+  # NuGetAuthenticate sets up credentials for the push step - no PAT needed in CI.
+  - task: NuGetAuthenticate@1
+    displayName: Authenticate to Azure Artifacts
+
+  - script: dotnet nuget push "$(Build.ArtifactStagingDirectory)/*.nupkg" --source "https://pkgs.dev.azure.com/$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_packaging/$(feedName)/nuget/v3/index.json" --api-key az
+    displayName: Push to Azure Artifacts
