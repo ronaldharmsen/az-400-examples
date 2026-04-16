@@ -1,0 +1,6 @@
+name: iac-pulumi-demo
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Azure App Service connected to a Storage Account (Pulumi demo)

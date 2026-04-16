@@ -1,0 +1,3 @@
+name: iac-pulumi-csharp-demo
+runtime: dotnet
+description: Azure App Service connected to a Storage Account (Pulumi C# demo)
