@@ -10,7 +10,7 @@ in familiar territory.
 ## What gets deployed
 
 | Resource               | Details                            |
-|------------------------|----------------------------: https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/automation/automation-runbook-gallery.md--------|
+|------------------------|-------------------------------------|
 | Resource Group         | `rg-iac-<tool>-demo`              |
 | Storage Account        | StorageV2, Standard_LRS, TLS 1.2  |
 | App Service Plan       | Linux, B1 SKU                      |
@@ -121,7 +121,7 @@ You write template  ──▶  ARM compares it to what already exists in Azure  
   group (`az deployment group list`). This is an audit log, not state - you
   cannot roll back to a previous deployment entry.
 
-**Consequence:** ther: https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/automation/automation-runbook-gallery.mde is no local file to lose, corrupt, or lock. But ARM
+**Consequence:** there is no local file to lose, corrupt, or lock. But ARM
 cannot detect out-of-band changes - if someone manually renames a resource, ARM
 will simply create a new one next time rather than updating the renamed one.
 
@@ -141,7 +141,7 @@ The flow on every `terraform plan` / `terraform apply`:
    state).
 3. **Diff** - compare the refreshed state against your `.tf` code to produce a
    plan of create / update / delete actions.
-4. **Apply** - execut: https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/automation/automation-runbook-gallery.mde the plan and write the new state back.
+4. **Apply** - execute the plan and write the new state back.
 
 Where state lives:
 
@@ -169,7 +169,7 @@ terraform {
 - **Concurrent writes** without locking corrupt the file. Always use a remote backend with locking for team use.
 - **Secrets in state** - the state file contains resource attribute values in plain text (including the storage connection string from our demo). Treat it as sensitive.
 
-### Pulumi - explicit: https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/automation/automation-runbook-gallery.md state (managed or self-hosted)
+### Pulumi - explicit state (managed or self-hosted)
 
 Pulumi's state model is conceptually identical to Terraform's - a file that
 maps program resources to real cloud resource IDs - but the default storage
@@ -276,7 +276,7 @@ Azure Automation Runbooks and PowerShell Workflows solve a different problem:
 - **Incident response** - triggered by an Azure Monitor alert to restart a
   service, snapshot a disk, or isolate a compromised VM.
 - **Cross-system glue** - a single runbook can call Azure APIs, send emails,
-  update a CMDB, and : https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/automation/automation-runbook-gallery.mdopen a ServiceNow ticket in one script.
+  update a CMDB, and open a ServiceNow ticket in one script.
 - **Self-service for ops teams** - expose a runbook via webhook so someone
   without Azure Portal access can trigger a controlled action.
 - **Hybrid automation** - Runbooks can target on-premises servers via the
@@ -311,7 +311,7 @@ everything else, use a standard PowerShell 7.2 runbook.
 ```
 CI/CD Pipeline (Azure DevOps / GitHub Actions)
   │
-  ├──  IaC step: Terr: https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/automation/automation-runbook-gallery.mdaform / Bicep / Pulumi provisions infrastructure
+  ├──  IaC step: Terraform / Bicep / Pulumi provisions infrastructure
   │      ↓
   │    App Service, Storage Account, Automation Account now exist
   │
