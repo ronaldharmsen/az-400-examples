@@ -4,7 +4,7 @@ trigger:
       - packages/nuget/**
 
 pool:
-  name: ubuntu-latest
+  vmImage: ubuntu-latest
 
 variables:
   projectDir: packages/nuget/src/Nforza.Demo.Utilities
