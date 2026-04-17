@@ -25,4 +25,20 @@ public static class StringExtensions
 
         return value.Trim().ToLowerInvariant().Replace(' ', '-');
     }
+
+    public static string ToTitleCase(this string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return string.Empty;
+
+        var words = value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < words.Length; i++)
+        {
+            if (words[i].Length > 0)
+            {
+                words[i] = char.ToUpper(words[i][0]) + words[i][1..].ToLower();
+            }
+        }
+        return string.Join(' ', words);
+    }
 }
